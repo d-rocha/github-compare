@@ -2,23 +2,25 @@ import React from 'react';
 
 import { ContainerBox, ContainerRepository } from './styles';
 
-const RepositoriesList = () => (
+const RepositoriesList = ({ repositories }) => (
 
   <ContainerBox>
-    <ContainerRepository>
-      <header>
-        <img src="https://avatars3.githubusercontent.com/u/69631?v=4" alt="Avatar Url" sizes="" />
-        <strong>react</strong>
-        <small>facebook</small>
-      </header>
-      <ul>
-        <li>95019 <small>stars</small></li>
-        <li>17891 <small>forks</small></li>
-        <li>232 <small>contribuitors</small></li>
-        <li>167 <small>open issues</small></li>
-        <li>3 days ago <small>last commit</small></li>
-      </ul>
-    </ContainerRepository>
+    {repositories.map(repository => (
+      <ContainerRepository>
+        <header>
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+          <strong>{repository.name}</strong>
+          <small>{repository.owner.login}</small>
+        </header>
+        <ul>
+          <li>{repository.stargazers_count} <small>stars</small></li>
+          <li>{repository.forks_count} <small>forks</small></li>
+          <li>{repository.subscribers_count} <small>subscribers</small></li>
+          <li>{repository.open_issues_count} <small>open issues</small></li>
+          <li>{repository.updated_at}<small>last commit</small></li>
+        </ul>
+      </ContainerRepository>
+    ))}
   </ContainerBox>
 
 );
