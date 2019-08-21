@@ -13,6 +13,7 @@ export default class Search extends Component {
     this.state = {
       repositoryInput: '',
       repositories: [],
+      error: false,
     }
   }
 
@@ -25,9 +26,10 @@ export default class Search extends Component {
       this.setState({
         repositoryInput: '',
         repositories: [...this.state.repositories, res],
+        error: false
       });
     } catch (err) {
-      console.log(err);
+      this.setState({ error: true });
     }
   };
 
@@ -36,7 +38,7 @@ export default class Search extends Component {
 
       <ContainerBox>
         <img src={logo} alt="GitHub Compare" />
-        <Form onSubmit={this.handleRepositoryAdd}>
+        <Form error={this.state.error} onSubmit={this.handleRepositoryAdd}>
           <input type="text" placeholder="usuário/repositório"
             value={this.state.repositoryInput}
             onChange={event => this.setState({ repositoryInput: event.target.value })} />

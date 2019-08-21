@@ -18,8 +18,8 @@ export const Form = styled.form`
     font-size: 15px;
     color: #444;
     border-radius: 10px;
-    border: none;
     margin-right: 5px;
+    border: ${props => (props.error ? '2px solid #F00' : 'none')};
   }
 
   button {
