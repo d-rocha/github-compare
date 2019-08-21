@@ -18,7 +18,7 @@ const RepositoriesList = ({ repositories }) => (
           <li>{repository.forks_count} <small>forks</small></li>
           <li>{repository.subscribers_count} <small>subscribers</small></li>
           <li>{repository.open_issues_count} <small>open issues</small></li>
-          <li>{repository.pushed_at}<small>last commit</small></li>
+          <li>{repository.lastCommit} <small>last commit</small></li>
         </ul>
       </ContainerRepository>
     ))}
@@ -41,4 +41,5 @@ RepositoriesList.propTypes = {
     pushed_at: PropTypes.string
   })).isRequired,
 }
+
 export default RepositoriesList;
