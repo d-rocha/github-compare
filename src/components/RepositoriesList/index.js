@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { ContainerBox, ContainerRepository } from './styles';
 
@@ -6,7 +7,7 @@ const RepositoriesList = ({ repositories }) => (
 
   <ContainerBox>
     {repositories.map(repository => (
-      <ContainerRepository>
+      <ContainerRepository key={repository.id}>
         <header>
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <strong>{repository.name}</strong>
@@ -17,7 +18,7 @@ const RepositoriesList = ({ repositories }) => (
           <li>{repository.forks_count} <small>forks</small></li>
           <li>{repository.subscribers_count} <small>subscribers</small></li>
           <li>{repository.open_issues_count} <small>open issues</small></li>
-          <li>{repository.updated_at}<small>last commit</small></li>
+          <li>{repository.pushed_at}<small>last commit</small></li>
         </ul>
       </ContainerRepository>
     ))}
@@ -25,4 +26,19 @@ const RepositoriesList = ({ repositories }) => (
 
 );
 
+RepositoriesList.propTypes = {
+  repositories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    owner: PropTypes.shape({
+      login: PropTypes.string,
+      avatar_url: PropTypes.string
+    }),
+    stargazers_count: PropTypes.number,
+    forks_count: PropTypes.number,
+    subscribers_count: PropTypes.number,
+    open_issues_count: PropTypes.number,
+    pushed_at: PropTypes.string
+  })).isRequired,
+}
 export default RepositoriesList;
