@@ -1,4 +1,4 @@
-# GiHub Compare
+# GitHub Compare
 
 ## Tecnologias Utilizadas
 
